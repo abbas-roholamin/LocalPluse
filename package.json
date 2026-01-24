@@ -1,0 +1,47 @@
+{
+  "name": "localpulse",
+  "version": "0.0.1",
+  "description": "A tiny, type-safe localStorage observer with cross-tab synchronization.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup ./src/index.ts --format cjs,esm --dts",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc"
+  },
+  "keywords": [
+    "localstorage",
+    "storage",
+    "state",
+    "state-management",
+    "observer",
+    "observable",
+    "reactive",
+    "sync",
+    "cross-tab",
+    "broadcastchannel",
+    "persistence",
+    "browser-storage",
+    "typescript",
+    "typed",
+    "ssr-safe",
+    "frontend",
+    "client-state",
+    "storage-observer",
+    "web-storage",
+    "tiny",
+    "lightweight"
+  ],
+  "author": "Abbas Roholamin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abbas-roholamin/localpulse.git"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}
