@@ -1,6 +1,19 @@
-# localpulse
+<p align="center">
+  <img src="https://raw.githubusercontent.com/abbas-roholamin/localpulse/main/assets/localpulse.jpg" alt="localpulse" width="640">
+</p>
 
-A tiny, type-safe `localStorage` observer with cross-tab synchronization.
+<h1 align="center">localpulse</h1>
+
+<p align="center">
+  A tiny, type-safe <code>localStorage</code> observer with cross-tab synchronization.
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/localpulse"><img src="https://img.shields.io/npm/v/localpulse.svg" alt="npm version"></a>
+  <a href="https://bundlephobia.com/package/localpulse"><img src="https://img.shields.io/bundlephobia/minzip/localpulse.svg" alt="gzipped size"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/npm/l/localpulse.svg" alt="MIT license"></a>
+</p>
+
 
 `localStorage` is a plain key/value bag: it cannot tell you when a value changes in the current tab, and the native `storage` event only fires in _other_ tabs and hands you raw strings. `localpulse` wraps a single key so you get typed reads and writes, a subscription that fires wherever the change came from, and no window listeners left behind.
 
@@ -255,6 +268,8 @@ pnpm build       # tsdown → dist/, validated with publint + attw
 ```
 
 Add a changeset (`pnpm changeset`) with any user-facing change; CI publishes from `main` once the version PR is merged.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full guide — project layout, how to test cross-tab behaviour, code style, and how releases work.
 
 ## License
 
