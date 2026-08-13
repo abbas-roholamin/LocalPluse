@@ -45,11 +45,18 @@ jobs:
       # comes from the OIDC id-token granted above. `changeset publish` shells
       # out to `pnpm publish` (it picks the tool from the lockfile), and pnpm
       # only understands OIDC from v11 — hence the pnpm@11 pin in package.json.
-      - uses: changesets/action@v1
+      #
+      # Must be v2, which reads @changesets/cli v3's "Created git tags:" output.
+      # v1 parses the older "New tag: pkg@version" format, so against CLI v3 it
+      # silently concludes nothing was published and skips both the tag push and
+      # the GitHub release while still exiting 0.
+      #
+      # create-github-releases and push-git-tags both default to true, and
+      # push-with-git-cli defaults to false — so tags go up through the GitHub
+      # API rather than `git push`, which avoids the workflow-scope restriction.
+      - uses: changesets/action@v2
         with:
-          version: pnpm changeset version
-          publish: pnpm run release
-          commit: "chore: version packages"
-          title: "chore: version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          version-script: pnpm changeset version
+          publish-script: pnpm run release
+          commit-message: "chore: version packages"
+          pr-title: "chore: version packages"
