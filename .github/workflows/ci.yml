@@ -17,9 +17,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Vitest 4 needs Node 20.19+; the published package itself is
-        # browser-only and has no runtime Node requirement.
-        node-version: [20, 22, 24]
+        # Floor is set by the test toolchain, not by the package: jsdom 30
+        # needs Node ^22.22.2 || ^24.15.0 || >=26, and its undici dependency
+        # needs >=22.19.0. The published package is browser-only and has no
+        # runtime Node requirement at all.
+        node-version: [22, 24]
 
     steps:
       - uses: actions/checkout@v4
