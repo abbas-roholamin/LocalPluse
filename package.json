@@ -1,6 +1,6 @@
 {
   "name": "localpulse",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A tiny, type-safe localStorage observer with cross-tab synchronization.",
   "type": "commonjs",
   "main": "./dist/index.cjs",
