@@ -24,9 +24,11 @@ jobs:
 
       - uses: pnpm/action-setup@v4
 
+      # Node 24 ships npm 11.x. npm trusted publishing needs npm >= 11.5.1 and
+      # Node >= 22.14.0; Node 22 still ships npm 10.9.x, which is too old.
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           registry-url: https://registry.npmjs.org
           cache: pnpm
 
@@ -38,6 +40,11 @@ jobs:
 
       # Opens a "Version Packages" PR when changesets are pending; publishes to
       # npm once that PR is merged.
+      #
+      # No npm token: the package uses npm trusted publishing, so authentication
+      # comes from the OIDC id-token granted above. `changeset publish` shells
+      # out to `pnpm publish` (it picks the tool from the lockfile), and pnpm
+      # only understands OIDC from v11 — hence the pnpm@11 pin in package.json.
       - uses: changesets/action@v1
         with:
           version: pnpm changeset version
@@ -46,5 +53,3 @@ jobs:
           title: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
